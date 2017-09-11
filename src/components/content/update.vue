@@ -1,5 +1,5 @@
 <template>
-  <div id="page-wrapper">
+  <div class="page-wrapper">
     <!-- /.row -->
     <div class="row">
       <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">

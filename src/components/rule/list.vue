@@ -1,5 +1,5 @@
 <<template>
-  <div id="page-wrapper" style="min-height: 384px;">
+  <div class="page-wrapper" style="min-height: 384px;">
     <!-- /.row -->
     <div class="row" id="content-list">
       <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">

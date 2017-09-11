@@ -1,5 +1,5 @@
 <template>
-  <div id="page-wrapper">
+  <div class="page-wrapper">
     <!-- /.row -->
     <div class="row">
       <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
@@ -12,7 +12,7 @@
           </div>
           <div class="panel-body">
             <item class="item" :model="treeData"></item>
-            <!-- /.row (nested) -->
+            <button class="btn btn-default" type="button">保存</button>
           </div>
           <!-- /.panel-body -->
         </div>
@@ -36,6 +36,7 @@
     }
   }
   var data = {
+    id:'-1',
     name: '菜单列表',
     children: [{
         id: '1',

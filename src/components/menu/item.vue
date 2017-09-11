@@ -3,19 +3,20 @@
     <form class="form-inline">
       <div class="form-group">
         <span v-if="isFolder" :class="[open ? 'fa fa-folder' : 'fa fa-folder-open']"></span>
-        <span @click="toggle" @dblclick="changeType">{{model.name}}</span>
-        <div class="input-group">
-          <input type="text" class="form-control input-sm" :placeholder="model.name">
+        <span @click="toggle" @dblclick="changeType" v-show="!model.isEdit">{{model.name}}</span>
+        <div class="input-group" v-show="model.isEdit">
+          <input type="text" class="form-control input-sm" v-model="model.name">
         </div>
       </div>
-      <span @click="edit(model.id)" class="glyphicon glyphicon-edit"></span>
+      <span @click="showEdit(model.id)" class="glyphicon glyphicon-edit" v-show="!model.isEdit"></span>
+      <span @click="edit(model.id)" class="glyphicon glyphicon-ok-circle" v-show="model.isEdit"></span>
       <span @click="remove(model.id)" class="glyphicon glyphicon-remove-sign"></span>
 
       <ul v-show="open" v-if="isFolder">
         <item class="item" v-for="model in model.children" :model="model"></item>
         <li class="fa fa-plus" @click="addChild"></li>
       </ul>
-    </form> 
+    </form>
   </div>
 </template>
 <script>
@@ -27,7 +28,7 @@
     },
     data() {
       return {
-        open: false
+        open: true
       }
     },
     computed: {
@@ -41,13 +42,33 @@
           this.open = !this.open
         }
       },
-      edit: function (id) {
+      showEdit: function (id) {
+        let _this = this;
         // 获取父组件的model.children
         let parent_model_children = this.$parent.model.children
         // 在父组件model.children里删除
         parent_model_children.forEach(function (element, i) {
           if (id == element.id) {
-            element.name = "修改后"
+            if (typeof element.isEdit == 'undefined') {
+              _this.$set(element, "isEdit", true);
+            } else {
+              element.isEdit = true;
+            }
+          }
+        })
+      },
+      edit: function (id) {
+        let _this = this;
+        // 获取父组件的model.children
+        let parent_model_children = this.$parent.model.children
+        // 在父组件model.children里删除
+        parent_model_children.forEach(function (element, i) {
+          if (id == element.id) {
+            if (typeof element.isEdit == 'undefined') {
+              _this.$set(element, "isEdit", false);
+            } else {
+              element.isEdit = false;
+            }
           }
         })
       },

@@ -16,7 +16,7 @@ module.exports = {
     app: './src/main.js',
     bootstrap: bootstrapConfig,
     metisMenu: './src/vendor/metisMenu/metisMenu.js',
-    sbAdminJs: './src/dist/js/sb-admin-2.js'
+    sbAdminJs: './src/js/sb-admin-2.js'
   },
   output: {
     path: config.build.assetsRoot,
