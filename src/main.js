@@ -9,7 +9,7 @@ import VModal from 'vue-js-modal'
 
 // import './vendor/bootstrap/css/bootstrap.css'
 import './vendor/metisMenu/metisMenu.min.css'
-import './dist/css/sb-admin-2.css'
+import './less/sb-admin-2.less'
 import './vendor/morrisjs/morris.css'
 import './vendor/font-awesome/css/font-awesome.min.css'
 

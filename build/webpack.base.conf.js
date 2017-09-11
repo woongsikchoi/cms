@@ -70,6 +70,10 @@ module.exports = {
         }
       },
       {
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader"
+      },
+      {
         test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
         loader: 'imports-loader?jQuery=jquery'
       }
