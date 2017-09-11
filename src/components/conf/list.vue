@@ -7,7 +7,7 @@
           <div class="panel-heading">
             <ol class="breadcrumb" style="margin-bottom:0px;">
               <li><a href="/content-list">内容管理</a></li>
-              <li class="active">内容列表</li>
+              <li class="active">配置列表</li>
             </ol>
           </div>
           <!-- /.panel-heading -->
@@ -136,8 +136,7 @@
   <script>
     import Vue from 'vue'
     import axios from 'axios'
-    Vue.prototype.$http = axios;
-    axios.defaults.headers.put['Content-Type'] = 'application/json';
+    
     export default {
       data() {
         return {

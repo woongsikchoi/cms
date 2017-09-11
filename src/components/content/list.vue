@@ -136,8 +136,7 @@
   <script>
     import Vue from 'vue'
     import axios from 'axios'
-    Vue.prototype.$http = axios;
-    axios.defaults.headers.put['Content-Type'] = 'application/json';
+
     export default {
       data() {
         return {

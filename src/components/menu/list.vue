@@ -12,7 +12,7 @@
           </div>
           <div class="panel-body">
             <item class="item" :model="treeData"></item>
-            <button class="btn btn-default" type="button">保存</button>
+            <button @click="update" class="btn btn-default" type="button">保存</button>
           </div>
           <!-- /.panel-body -->
         </div>
@@ -24,45 +24,58 @@
   </div>
 </template>
 <script>
-  import item from './item.vue';
+  import item from './item.vue'
+  import axios from 'axios'
   export default {
     data() {
       return {
-        treeData: data
+        confId: '',
+        treeData: {}
       }
     },
     components: {
       item
-    }
-  }
-  var data = {
-    id:'-1',
-    name: '菜单列表',
-    children: [{
-        id: '1',
-        name: '首页'
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.getMenu()
+      })
+    },
+    methods: {
+      getMenu() {
+        axios.get('http://127.0.0.1:80/cms/conf/key/MENU')
+          .then(response => {
+            this.treeData = JSON.parse(response.data.conf)
+            this.confId = response.data.confId
+          })
+          .catch(error => {
+            this.dialog('查询失败')
+          })
       },
-      {
-        id: '2',
-        name: '新闻'
+      update() {
+        axios.put('http://127.0.0.1:80/cms/conf/' + this.$data.confId, JSON.stringify({
+            'confId': this.$data.confId,
+            'conf': JSON.stringify(this.treeData)
+          }))
+          .then(response => {
+            if (response.status != 200) {
+              this.dialog('更新失败')
+            }
+          })
+          .catch(error => {
+            this.dialog('更新失败')
+          })
       },
-      {
-        id: '3',
-        name: '国内新闻',
-        children: [{
-          id: '4',
-          name: '24热门'
-        }]
-      },
-      {
-        id: '5',
-        name: '公告'
-      },
-      {
-        id: '6',
-        name: '关于我们'
+      dialog(msg) {
+        this.$modal.show('dialog', {
+          title: '提示',
+          text: msg,
+          buttons: [{
+            title: '取消'
+          }]
+        })
       }
-    ]
+    }
   }
 
 </script>

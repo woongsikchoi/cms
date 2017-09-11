@@ -64,8 +64,6 @@
     Validator
   } from 'vee-validate'
   import zh from 'vee-validate/dist/locale/zh_CN'
-  Vue.prototype.$http = axios;
-  axios.defaults.headers.post['Content-Type'] = 'application/json'
 
   Validator.addLocale(zh);
   const config = {

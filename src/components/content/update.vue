@@ -66,7 +66,7 @@
     Validator
   } from 'vee-validate';
   import zh from 'vee-validate/dist/locale/zh_CN';
-  Vue.prototype.$http = axios;
+
   Validator.addLocale(zh);
   const config = {
     locale: 'zh_CN'
@@ -147,7 +147,6 @@
         var _this = this;
         this.$validator.validateAll().then((result) => {
           if (result) {
-            axios.defaults.headers.put['Content-Type'] = 'application/json';
             axios.put('http://127.0.0.1:80/cms/content/' + _this.$data.content.contentId, _this.serializeData())
               .then(function (response) {
                 if (response.status == 200) {
@@ -162,7 +161,6 @@
               .catch(function (error) {
                 _this.dialog('更新失败');
               });
-            return;
           }
         });
       },

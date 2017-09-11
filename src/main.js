@@ -13,6 +13,9 @@ import './less/sb-admin-2.less'
 import './vendor/morrisjs/morris.css'
 import './vendor/font-awesome/css/font-awesome.min.css'
 
+axios.defaults.headers.put['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+Vue.prototype.$http = axios;
 Vue.config.productionTip = false
 Vue.use(axios)
 Vue.use(VModal, { dialog: true })

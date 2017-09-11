@@ -71,8 +71,7 @@
     import axios from 'axios'
     import TreeView from "vue-json-tree-view"
     Vue.use(TreeView)
-    Vue.prototype.$http = axios;
-    axios.defaults.headers.put['Content-Type'] = 'application/json';
+
     export default {
       data() {
         let _this = this;
